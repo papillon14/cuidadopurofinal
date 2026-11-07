@@ -1,0 +1,411 @@
+        /* Variáveis de ambiente fornecidas e estendidas */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #305eb1 0%, #162d61 100%);
+            --card-gradient: linear-gradient(180deg, #3a2fa8 0%, #2196f3 100%);
+            --primary-color: #67c2b8;
+            --hover-color: #55a89f;
+            --text-white: #ffffff;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-gradient);
+            color: var(--text-white);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            width: 100%;
+            height: 90px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        /* ✅ LOGO CORRIGIDO */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: -38px;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            max-width: 45px;
+            max-height: 45px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 120px;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            font-weight: 400;
+            transition: 0.3s;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0%;
+            height: 2px;
+            background: #67c2b8;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #67c2b8;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Barra de Navegação (Baseada nas Imagens 1 e 2) */
+        header {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(22, 45, 97, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        /* Ícone de coração com pulso simulando a imagem 1 */
+        .logo-icon {
+            margin-right: 10px;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-color: var(--text-white);
+            clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+            transform: scale(0.9);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-white);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            opacity: 0.85;
+            transition: opacity 0.3s, border-bottom 0.2s;
+            padding-bottom: 4px;
+        }
+
+        nav a.active {
+            opacity: 1;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .btn-login {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 30px;
+            background: #67c2b8;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-login:hover {
+            background: #429e93;
+            transform: translateY(-2px);
+        }
+
+        .btn-entrar {
+            background-color: var(--primary-color);
+            color: var(--text-white);
+            padding: 8px 24px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 15px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-entrar:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-1px);
+        }
+
+        /* Container de Conteúdo */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 90px 20px;
+        }
+
+        /* Cabeçalho da Seção Sobre */
+        .about-hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .about-hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .about-hero p {
+            font-size: 19px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Layout de Apresentação (Texto + Mockup Interativo) */
+        .about-intro-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .about-text h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        /* Detalhe visual na lateral do título */
+        .about-text h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            height: 80%;
+            width: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.85;
+            text-align: justify;
+        }
+
+        /* Box interativo simulando a interface da imagem 2 */
+        .app-visual-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .app-brand-icon {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #4fa3f7 0%, #164da1 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(79, 163, 247, 0.5);
+        }
+
+        .app-brand-icon svg {
+            width: 55px;
+            height: 55px;
+            fill: none;
+            stroke: var(--text-white);
+            stroke-width: 2;
+        }
+
+        .app-logo-text {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .app-logo-sub {
+            font-size: 13px;
+            opacity: 0.7;
+            letter-spacing: 2px;
+            margin-bottom: 35px;
+        }
+
+        /* Botões Arredondados idênticos aos da imagem 2 */
+        .mockup-button {
+            display: block;
+            width: 85%;
+            margin: 15px auto;
+            background-color: var(--primary-color);
+            color: var(--text-white);
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .mockup-button:hover {
+            background-color: var(--hover-color);
+            transform: scale(1.02);
+        }
+
+        /* Seção de Pilares e Funcionalidades (Imagem 3) */
+        .features-section h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Cards baseados perfeitamente na Imagem 3 */
+        .feature-card {
+            background: var(--card-gradient);
+            border-radius: 20px;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-top-icon {
+            font-size: 36px;
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-size: 21px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Tags / Hashtags inferiores */
+        .card-hashtag {
+            align-self: flex-start;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* Rodapé */
+        footer {
+            margin-top: 100px;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Responsividade para Telas Menores e Celulares */
+        @media (max-width: 900px) {
+            .about-intro-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+        }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a2040">
+  <title>Conversas — Cuidado Puro</title>
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../icons/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+  <style>
+    .chat-pagina { max-width: 1200px; margin: 0 auto; padding: 16px; }
+    .chat-cabecalho { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; min-height: 40px; background: rgba(8,20,49,.88); padding: 8px 14px; border-radius: 14px; }
+    .chat-cabecalho h1 { font-size: 1.3rem; margin: 0; flex: 1; text-shadow: 0 2px 10px rgba(0,0,0,.5); }
+    @media (max-width: 900px) { .chat-pagina { padding: 8px; } .chat-cabecalho { margin-bottom: 8px; } }
+  </style>
+</head>
+<body>
+  <div class="chat-pagina">
+    <div class="chat-cabecalho">
+      <a class="btn btn-claro btn-pequeno" id="voltar-painel" href="#">← Painel</a>
+      <h1>💬 Conversas</h1>
+    </div>
+    <div class="cartao chat" id="chat">
+      <aside class="chat-lista" aria-label="Conversas"><h3>Contatos</h3><div id="contatos"></div></aside>
+      <section class="chat-janela" id="janela"><div class="chat-vazio">Escolha uma conversa ao lado.</div></section>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/site.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/chat.js"></script>
+</body>
+</html>

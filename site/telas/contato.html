@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Cuidado Puro Home Health</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/contato.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="icon" href="../icons/icon-192.png">
+    <meta name="theme-color" content="#0a2040">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html"><img src="img/logo_(2).png" alt="Logo"></a>
+            <a href="../index.html" class="logo-text">Cuidado Puro</a>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="beneficios.html">Benefícios</a></li>
+                <li><a href="opinioes.html">Opiniões</a></li>
+                <li><a href="contato.html" style="color: #67c2b8;">Contato</a></li>
+                <li><a href="dashboardAdmin.html" class="link-interno" title="Acesso da equipe interna">Usuário interno</a></li>
+            </ul>
+        </nav>
+
+        <a href="telaLogin.html" class="btn-login">Entrar</a>
+        <button class="btn-menu" aria-label="Abrir menu">☰</button>
+    </header>
+
+    <main class="contact-container">
+
+        <!-- Hero Section / Cabeçalho da Página -->
+        <section class="contact-hero">
+            <h1>Entre em Contato</h1>
+            <p>Estamos aqui para ajudar. Entre em contato com a equipe Cuidado Puro Home Health para tirar dúvidas, obter informações ou receber suporte.</p>
+        </section>
+
+        <div class="contact-grid">
+            
+            <!-- Informações de Contato -->
+            <section class="contact-info-section">
+                <h2>Fale Conosco</h2>
+                <p class="section-subtitle">Escolha uma das formas de contato abaixo para falar com nossa equipe.</p>
+
+                <div class="info-cards-list">
+                    <div class="info-card">
+                        <div class="icon">✉️</div>
+                        <div class="info-details">
+                            <h3>E-mail</h3>
+                            <p class="highlight">contato@cuidadopuro.com.br</p>
+                            <p class="subtext">Responderemos o mais breve possível.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="icon">📞</div>
+                        <div class="info-details">
+                            <h3>Telefone</h3>
+                            <p class="highlight">(44) 99999-9999</p>
+                            <p class="subtext">Atendimento e suporte aos usuários.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="icon">📍</div>
+                        <div class="info-details">
+                            <h3>Localização</h3>
+                            <p class="highlight">Maringá - Paraná</p>
+                            <p class="subtext">Atendimento na região e suporte online.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="icon">🕐</div>
+                        <div class="info-details">
+                            <h3>Horário de Atendimento</h3>
+                            <p class="highlight">Segunda a sexta: 08h às 18h</p>
+                            <p class="subtext">Suporte emergencial conforme disponibilidade.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formulário de Mensagem -->
+            <section class="contact-form-section">
+                <h2>Envie uma Mensagem</h2>
+                <form class="contact-form" id="form-contato" novalidate>
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="assunto">Assunto</label>
+                        <select id="assunto" name="assunto" required>
+                            <option value="" disabled selected>Selecione um assunto</option>
+                            <option value="Dúvidas gerais">Dúvidas Gerais</option>
+                            <option value="Suporte técnico">Suporte Técnico</option>
+                            <option value="Parcerias e serviços">Parcerias e Serviços</option>
+                            <option value="Outro assunto">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Digite sua mensagem..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Enviar Mensagem</button>
+                </form>
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer>
+        &copy; 2026 Cuidado Puro Home Health. Conectando tecnologia, vidas e corações com responsabilidade.
+    </footer>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/site.js"></script>
+    <script>
+    // Contato -> vira um chamado no painel do SAC
+    document.getElementById("form-contato").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const f = e.target, botao = f.querySelector("button[type=submit]");
+      const dados = { nome: f.nome.value.trim(), email: f.email.value.trim(), assunto: f.assunto.value,
+                      mensagem: f.mensagem.value.trim() + (f.telefone.value.trim() ? "\n\nTelefone: " + f.telefone.value.trim() : "") };
+      if (!dados.nome || !dados.email || !dados.assunto || !f.mensagem.value.trim()) return alertaContato("Preencha nome, e-mail, assunto e mensagem.", true);
+      botao.disabled = true;
+      try {
+        const r = await fetch(API_BASE_URL + "/sac/chamados", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(dados) });
+        const j = await r.json();
+        if (!r.ok) throw new Error(Array.isArray(j.detail) ? "Confira o e-mail e a mensagem (mínimo 5 letras)." : j.detail);
+        f.reset();
+        alertaContato("Mensagem enviada! A equipe do SAC vai responder no seu e-mail.");
+      } catch (erro) { alertaContato(erro.message || "Não foi possível enviar agora.", true); }
+      botao.disabled = false;
+    });
+    function alertaContato(texto, erro) {
+      let a = document.getElementById("retorno-contato");
+      if (!a) { a = document.createElement("p"); a.id = "retorno-contato"; a.setAttribute("role", "status");
+        a.style.cssText = "margin-top:12px;padding:10px 14px;border-radius:10px;font-size:.9rem";
+        document.getElementById("form-contato").appendChild(a); }
+      a.textContent = texto;
+      a.style.background = erro ? "rgba(239,127,127,.2)" : "rgba(129,199,132,.2)";
+    }
+    </script>
+</body>
+</html>

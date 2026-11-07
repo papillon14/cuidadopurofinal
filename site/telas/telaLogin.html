@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a2040">
+  <title>Entrar — Cuidado Puro</title>
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../icons/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <main class="entrada">
+    <div class="entrada-caixa">
+      <a class="voltar" href="../index.html">← Voltar ao site</a>
+      <div class="cartao">
+        <p class="olho">Cuidado Puro · Home Health</p>
+        <h1>Entrar</h1>
+        <p class="suave">Paciente, cuidador ou familiar: use o e-mail e a senha do seu cadastro.</p>
+
+        <form id="form-login" novalidate>
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="username" required placeholder="seu@email.com">
+          </div>
+          <div class="campo">
+            <label for="senha">Senha</label>
+            <input id="senha" name="senha" type="password" autocomplete="current-password" required placeholder="Sua senha">
+          </div>
+          <button class="btn btn-bloco" type="submit">Entrar</button>
+        </form>
+
+        <p style="margin-top:16px" class="pequeno">Ainda não tem cadastro? <a href="telaescolha.html">Cadastre-se</a></p>
+        <p class="pequeno">É da equipe interna? <a href="dashboardAdmin.html">Acesso da equipe</a></p>
+
+        <div class="logins-teste">
+          <strong>Demonstração</strong> (senha <code>cuidado123</code>):<br>
+          <button data-email="tereza@email.com">Tereza (paciente)</button> ·
+          <button data-email="carlos.souza@email.com">Carlos (Premium)</button> ·
+          <button data-email="marcos.oliveira@email.com">Marcos (Padrão)</button> ·
+          <button data-email="ana.silva@email.com">Ana (Básico)</button> ·
+          <button data-email="mariana.lawson@email.com">Mariana (família)</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/site.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+</html>

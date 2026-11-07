@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a2040">
+  <title>Cadastro do Paciente — Cuidado Puro</title>
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../icons/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <main class="entrada">
+    <div class="entrada-caixa larga">
+      <a class="voltar" href="telaescolha.html">← Voltar</a>
+      <div class="cartao" id="caixa-form">
+        <p class="olho">Cadastro · Paciente</p>
+        <h1>Formulário do Paciente</h1>
+        <p class="suave">Preencha os dados de quem vai receber o cuidado. Se for um familiar fazendo o cadastro, coloque os dados do paciente e os seus como responsável.</p>
+        <div class="aviso-demo">⚠️ <strong>Sistema de demonstração.</strong> Use dados inventados: não coloque CPF, telefone ou endereço de verdade.</div>
+
+        <form id="form-cadastro" data-tipo="paciente" novalidate>
+          <fieldset>
+            <legend>1. Dados do paciente</legend>
+            <div class="grade-campos">
+              <div class="campo inteiro"><label for="nome">Nome completo *</label>
+                <input id="nome" name="nome" required minlength="3" maxlength="100" placeholder="Ex.: Maria da Silva"></div>
+              <div class="campo"><label for="data_nascimento">Data de nascimento *</label>
+                <input id="data_nascimento" name="data_nascimento" type="date" required></div>
+              <div class="campo"><label for="cpf">CPF *</label>
+                <input id="cpf" name="cpf" required inputmode="numeric" data-mascara="cpf" placeholder="000.000.000-00"></div>
+              <div class="campo"><label for="rg">RG *</label>
+                <input id="rg" name="rg" required minlength="4" maxlength="20" placeholder="00.000.000-0"></div>
+              <div class="campo"><label for="telefone">Telefone / WhatsApp *</label>
+                <input id="telefone" name="telefone" required inputmode="tel" data-mascara="telefone" placeholder="(44) 99999-9999"></div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>2. Endereço do atendimento</legend>
+            <div class="grade-campos">
+              <div class="campo inteiro"><label for="endereco">Rua, número e bairro *</label>
+                <input id="endereco" name="endereco" required minlength="5" maxlength="200" placeholder="Ex.: Rua das Flores, 120 - Zona 7"></div>
+              <div class="campo"><label for="cidade">Cidade *</label>
+                <input id="cidade" name="cidade" required minlength="2" maxlength="100" placeholder="Ex.: Maringá"></div>
+              <div class="campo"><label for="cep">CEP *</label>
+                <input id="cep" name="cep" required inputmode="numeric" data-mascara="cep" placeholder="00000-000"></div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>3. Responsável (opcional)</legend>
+            <div class="grade-campos">
+              <div class="campo"><label for="nome_responsavel">Nome do responsável</label>
+                <input id="nome_responsavel" name="nome_responsavel" maxlength="100" placeholder="Ex.: João (filho)"></div>
+              <div class="campo"><label for="telefone_responsavel">Telefone do responsável</label>
+                <input id="telefone_responsavel" name="telefone_responsavel" inputmode="tel" data-mascara="telefone" placeholder="(44) 99999-9999"></div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>4. Necessidades de cuidado</legend>
+            <p class="suave pequeno">Marque tudo o que se aplica. Isso ajuda a encontrar o cuidador certo.</p>
+            <div class="opcoes" id="lista-necessidades"><span class="suave">Carregando...</span></div>
+            <div class="campo" style="margin-top:14px"><label for="observacoes">Observações importantes</label>
+              <textarea id="observacoes" name="observacoes" maxlength="500" placeholder="Ex.: alergia a dipirona, usa cadeira de rodas..."></textarea></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>5. Acesso</legend>
+            <div class="grade-campos">
+              <div class="campo inteiro"><label for="email">E-mail (será o seu login) *</label>
+                <input id="email" name="email" type="email" required maxlength="150" autocomplete="username" placeholder="seu@email.com"></div>
+              <div class="campo"><label for="senha">Senha *</label>
+                <input id="senha" name="senha" type="password" required minlength="6" autocomplete="new-password" placeholder="Mínimo 6 caracteres"></div>
+              <div class="campo"><label for="senha2">Repita a senha *</label>
+                <input id="senha2" type="password" required minlength="6" autocomplete="new-password" placeholder="Igual à de cima"></div>
+              <div class="campo inteiro"><label for="origem">Como conheceu o Cuidado Puro?</label>
+                <select id="origem" name="origem"><option value="">Prefiro não dizer</option></select></div>
+            </div>
+            <p class="destaque-caixa pequeno" id="info-plano">Mensalidade do paciente: carregando...</p>
+          </fieldset>
+
+          <button class="btn btn-bloco" type="submit">Enviar cadastro</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/site.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/cadastro.js"></script>
+</body>
+</html>

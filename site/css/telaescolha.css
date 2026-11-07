@@ -1,0 +1,203 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #305eb1 0%, #162d61 100%);
+    --card-gradient: linear-gradient(180deg, #3a2fa8 0%, #2196f3 100%);
+    --primary-color: #67c2b8;
+    --hover-color: #55a89f;
+    --text-white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+/* =========================
+   BODY
+========================= */
+
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    width: 100%;
+    height: 90px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+}
+
+/* LOGO NAVBAR */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: -38px;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.logo-text {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+/* LINKS NAVBAR */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 120px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* BOTÃO LOGIN */
+
+.btn-login {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 30px;
+    background: #67c2b8;
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.btn-login:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+/* =========================
+   CONTEÚDO PRINCIPAL
+========================= */
+
+.main-container {
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-height: calc(100vh - 100px);
+}
+
+/* LOGO */
+
+.logo-img {
+    width: 400px;
+    height: 400px;
+
+    margin-bottom: 20px;
+
+    border-radius: 20px;
+}
+
+/* BOTÕES */
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+
+    width: 100%;
+}
+
+.btn {
+    text-decoration: none;
+
+    display: block;
+
+    padding: 18px;
+
+    border-radius: 50px;
+
+    font-size: 2.1rem;
+    font-weight: bold;
+
+    color: var(--text-white);
+
+    background-color: var(--primary-color);
+
+    transition: 0.3s;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-3px);
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    body {
+        padding-top: 160px;
+    }
+
+    .logo-img {
+        width: 250px;
+        height: auto;
+    }
+}

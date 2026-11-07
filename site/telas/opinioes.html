@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opiniões - Cuidado Puro Home Health</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/opinioes.css">
+  
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html"><img src="img/logo_(2).png" alt="Logo"></a>
+            <a href="../index.html" class="logo-text">Cuidado Puro</a>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="../index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="beneficios.html">Benefícios</a></li>
+                <li><a href="opinioes.html" style="color: #67c2b8;">Opiniões</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="dashboardAdmin.html" class="link-interno" title="Acesso da equipe interna">Usuário interno</a></li>
+            </ul>
+        </nav>
+
+        <a href="telaLogin.html" class="btn-login">Entrar</a>
+        <button class="btn-menu" aria-label="Abrir menu">☰</button>
+    </header>
+
+    <main class="opiniones-container">
+
+        <section class="opiniones-hero">
+            <h1>Histórias Reais, Vidas Transformadas</h1>
+            <p>Descubra como o Cuidado Puro Home Health está redefinindo a assistência domiciliar através da segurança, afeto e tecnologia integrada para milhares de famílias.</p>
+        </section>
+
+        <section class="metrics-bar" id="numeros-reais">
+            <div class="metric-item"><h2>…</h2><p>Carregando</p></div>
+        </section>
+
+        <!-- Depoimentos REAIS: vêm das avaliações que os pacientes fazem no app -->
+        <section class="testimonials-grid" id="avaliacoes-reais"></section>
+        <p style="text-align:center;opacity:.8;font-size:.85rem;margin-top:18px">Números e avaliações reais, direto do banco de dados do Cuidado Puro.</p>
+    </main>
+
+    <footer>
+        &copy; 2026 Cuidado Puro Home Health. Todos os direitos reservados. Promovendo autonomia e segurança.
+    </footer>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/site.js"></script>
+    <script>
+    // Opiniões REAIS (avaliações feitas pelos pacientes depois dos atendimentos)
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    fetch(API_BASE_URL + "/publico/opinioes").then((r) => r.json()).then((d) => {
+      document.getElementById("numeros-reais").innerHTML = [
+        [d.nota_media ? d.nota_media + "/5" : "—", `Nota média (${d.total_avaliacoes} avaliações)`],
+        [d.pacientes, "Pacientes atendidos"], [d.cuidadores, "Cuidadores aprovados"], [d.atendimentos, "Atendimentos concluídos"],
+      ].map(([v, t]) => `<div class="metric-item"><h2>${esc(v)}</h2><p>${esc(t)}</p></div>`).join("");
+      document.getElementById("avaliacoes-reais").innerHTML = d.avaliacoes.length ? d.avaliacoes.map((a) => `
+        <article class="testimonial-card"><span class="card-tag">${"★".repeat(a.nota)} Paciente</span>
+          <p class="testimonial-text">"${esc(a.comentario)}"</p>
+          <div class="author-info"><div class="author-avatar">💬</div><div class="author-details">
+            <h4>${esc(a.autor)}</h4><p>sobre ${esc(a.cuidador)} (${esc(a.categoria)})</p></div></div></article>`).join("")
+        : `<article class="testimonial-card"><p class="testimonial-text">Ainda não há avaliações. Elas aparecem aqui depois dos primeiros atendimentos.</p></article>`;
+    }).catch(() => {
+      document.getElementById("numeros-reais").innerHTML = `<div class="metric-item"><p>Ligue a API para ver os números reais.</p></div>`;
+    });
+    </script>
+</body>
+</html>

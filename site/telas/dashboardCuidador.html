@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a2040">
+  <title>Painel do Cuidador — Cuidado Puro</title>
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../icons/icon-192.png">
+  <link rel="apple-touch-icon" href="../icons/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <!-- barra que só aparece no celular/tablet: abre o menu lateral -->
+  <div class="barra-celular">
+    <button class="btn-icone btn-gaveta" aria-label="Abrir menu">☰</button>
+    <img src="img/logo_(2).png" alt=""><strong>Cuidado Puro</strong>
+  </div>
+  <div class="gaveta-fundo"></div>
+
+  <div class="app">
+    <aside class="lateral">
+      <a class="marca" href="../index.html"><img src="img/logo_(2).png" alt="">
+        <span><strong>Cuidado Puro</strong><small>Home Health</small></span></a>
+      <nav aria-label="Menu"></nav>
+      <div class="usuario-caixa"></div>
+    </aside>
+    <main class="conteudo"></main>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/site.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/dashboard-comum.js"></script>
+  <script src="../js/dashboard-cuidador.js"></script>
+</body>
+</html>

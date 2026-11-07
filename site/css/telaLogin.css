@@ -1,0 +1,65 @@
+
+
+/* Overrides para inputs: manter formato (.btn) sem cor nem animação */
+input.btn {
+    background: transparent;
+    box-shadow: none;
+    transition: none;
+    transform: none;
+    border: 2px solid rgba(255,255,255,0.12);
+    color: var(--text-white);
+    width: 100%;
+    padding: 18px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    outline: none;
+}
+
+input.btn::placeholder {
+    color: rgba(255,255,255,0.7);
+    font-weight: 400;
+}
+
+input.btn:hover {
+    background: transparent;
+    transform: none;
+}
+
+.text-acess {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 12px auto;
+}
+
+.forgot {
+    margin-top: 6px;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.forgot a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 6px;
+}
+
+.signup {
+    margin-top: 14px;
+    color: rgba(255,255,255,0.95);
+    text-align: center;
+    font-size: 1rem;
+}
+
+.signup a { color: var(--primary-color); text-decoration: none; font-weight:700 }
+
+.login-action {
+    margin-top: 22px;
+    display: flex;
+    justify-content: center;
+}

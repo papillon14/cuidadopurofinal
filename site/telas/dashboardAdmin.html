@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a2040">
+  <title>Painel da Equipe — Cuidado Puro</title>
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../icons/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+  <!-- LOGIN DA EQUIPE -->
+  <main class="entrada escondido" id="tela-login">
+    <div class="entrada-caixa">
+      <a class="voltar" href="../index.html">← Voltar ao site</a>
+      <div class="cartao">
+        <p class="olho">Usuário interno</p>
+        <h1>Painel da equipe</h1>
+        <p class="suave">Use o e-mail e a senha que o ADM cadastrou para você. O painel mostra só a parte do seu papel.</p>
+        <form id="form-login" novalidate>
+          <div class="campo"><label for="email">E-mail</label><input id="email" name="email" type="email" required autocomplete="username"></div>
+          <div class="campo"><label for="senha">Senha</label><input id="senha" name="senha" type="password" required autocomplete="current-password"></div>
+          <button class="btn btn-bloco" type="submit">Entrar no painel</button>
+        </form>
+        <p class="pequeno" style="margin-top:12px">É paciente, cuidador ou família? <a href="telaLogin.html">Entrar por aqui</a></p>
+        <div class="logins-teste"><strong>Demonstração:</strong>
+          <button data-email="adm@cuidadopuro.com" data-senha="admin123">ADM</button> ·
+          <button data-email="suporte@cuidadopuro.com">Suporte</button> ·
+          <button data-email="sac@cuidadopuro.com">SAC</button> ·
+          <button data-email="financeiro@cuidadopuro.com">Financeiro</button> ·
+          <button data-email="marketing@cuidadopuro.com">Marketing</button> ·
+          <button data-email="comercial@cuidadopuro.com">Comercial</button> ·
+          <button data-email="frontend@cuidadopuro.com">Frontend</button> ·
+          <button data-email="backend@cuidadopuro.com">Backend</button> ·
+          <button data-email="banco@cuidadopuro.com">Banco</button>
+          <br>(ADM: <code>admin123</code> · demais: <code>equipe123</code>)
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- PAINEL -->
+  <div id="tela-painel" class="escondido">
+    <div class="barra-celular">
+      <button class="btn-icone btn-gaveta" aria-label="Abrir menu">☰</button>
+      <img src="img/logo_(2).png" alt=""><strong>Painel da equipe</strong>
+    </div>
+    <div class="gaveta-fundo"></div>
+    <div class="app">
+      <aside class="lateral">
+        <a class="marca" href="../index.html"><img src="img/logo_(2).png" alt="">
+          <span><strong>Cuidado Puro</strong><small>Equipe interna</small></span></a>
+        <nav aria-label="Menu do painel"></nav>
+        <div class="usuario-caixa"></div>
+      </aside>
+      <main class="conteudo"></main>
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/site.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/painel.js"></script>
+</body>
+</html>

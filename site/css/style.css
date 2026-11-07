@@ -1,0 +1,333 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #305eb1 0%, #162d61 100%);
+    --card-gradient: linear-gradient(180deg, #3a2fa8 0%, #2196f3 100%);
+    --primary-color: #67c2b8;
+    --hover-color: #55a89f;
+    --text-white: #ffffff;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
+}
+
+/* 🖼️ CORPO CONFIGURADO COM A SUA NOVA IMAGEM MÉDICA */
+body {
+    /* O linear-gradient sutil por cima garante contraste nítido para as fontes brancas */
+    background-image: 
+        linear-gradient(135deg, rgba(22, 45, 97, 0.3) 0%, rgba(13, 25, 54, 0.4) 1%), 
+        url(../telas/img/foto_index.jpg); 
+    background-size: cover;          /* Preenche a tela inteira sem distorcer a arte */
+    background-position: center;     /* Centraliza as ondas e os hexágonos */
+    background-repeat: no-repeat;    /* Evita repetição da imagem */
+    background-attachment: fixed;    /* Efeito premium estático ao rolar a página */
+    min-height: 100vh;
+    color: white;
+    padding-top: 100px;
+}
+
+.navbar {
+width: 100%;
+height: 90px;
+position: fixed;
+top: 0;
+left: 0;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 5%;
+background: rgba(255, 255, 255, 0.08);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+z-index: 1000;
+}
+
+/* ✅ LOGO CORRIGIDO */
+.logo {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-left: -38px;
+}
+
+.logo img {
+width: 45px;
+height: 45px;
+max-width: 45px;
+max-height: 45px;
+object-fit: contain;
+filter: brightness(0) invert(1);
+flex-shrink: 0;
+}
+
+.logo-text {
+color: white;
+font-size: 1.3rem;
+font-weight: 600;
+letter-spacing: 1px;
+text-decoration: none;
+}
+
+.nav-links {
+display: flex;
+align-items: center;
+list-style: none;
+gap: 120px;
+}
+
+.nav-links li {
+position: relative;
+}
+
+.nav-links a {
+text-decoration: none;
+color: white;
+font-size: 20px;
+font-weight: 400;
+transition: 0.3s;
+}
+
+.nav-links a::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: -6px;
+width: 0%;
+height: 2px;
+background: #67c2b8;
+transition: 0.3s;
+}
+
+.nav-links a:hover {
+color: #67c2b8;
+}
+
+.nav-links a:hover::after {
+width: 100%;
+}
+
+.nav-actions {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+
+.btn-login {
+padding: 10px 24px;
+border: none;
+border-radius: 30px;
+background: #67c2b8;
+color: white;
+font-size: 0.95rem;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+text-decoration: none;
+}
+
+.btn-login:hover {
+background: #429e93;
+transform: translateY(-2px);
+}
+
+.btn-menu {
+display: none;
+background: transparent;
+border: none;
+color: white;
+font-size: 2rem;
+cursor: pointer;
+}
+
+/* ==========================================================================
+   ESTILIZAÇÃO DA SEÇÃO HERO
+   ========================================================================== */
+
+.hero-section {
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 10%;
+    gap: 80px;
+}
+
+/* Lado Esquerdo - Tipografia Forte */
+.hero-content {
+    flex: 1.1;
+    max-width: 550px;
+}
+
+.hero-content h1 {
+    font-size: 4.2rem;
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Leve sombra para destacar a leitura */
+}
+
+.hero-content h1 .highlight-text {
+    font-weight: 600;
+}
+
+.divider {
+    width: 80px;
+    border: none;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin-bottom: 45px;
+}
+
+.btn-cadastrar {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 48px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-cadastrar:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+/* Lado Direito - Filosofia Editorial Humana */
+.hero-philosophy {
+    flex: 1;
+    max-width: 520px;
+}
+
+.philosophy-tag {
+    font-size: 1.26rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.philosophy-text {
+    font-size: 1.75rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    margin-bottom: 30px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Garante leitura perfeita sobre os hexágonos brilhantes */
+}
+
+.philosophy-list {
+    list-style: none;
+}
+
+.philosophy-list li {
+    font-size: 1.26rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.philosophy-list li::before {
+    content: "";
+    width: 12px;
+    height: 1px;
+    background-color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+/* Responsividade Adaptada */
+@media (max-width: 1024px) {
+    .hero-section {
+        gap: 40px;
+    }
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 900px) {
+    body {
+        background-position: 35% center; /* Ajusta o fundo em telas menores para focar nos gráficos */
+    }
+
+    .hero-section {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 7%;
+        gap: 50px;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .divider {
+        margin: 20px auto 40px;
+    }
+
+    .hero-philosophy {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .philosophy-list li {
+        justify-content: center;
+    }
+}
+/* ==========================================================================
+   MENU NO CELULAR E TABLET (adicionado): os links viram uma lista que abre
+   no botão ☰. Antes eles ficavam espremidos e saíam da tela.
+   ========================================================================== */
+@media (max-width: 1100px) {
+    .nav-links { gap: 40px; }
+}
+@media (max-width: 900px) {
+    .navbar { height: 70px; padding: 0 16px; }
+    body { padding-top: 70px; }
+    .logo { margin-left: 0; }
+    .logo img { width: 36px; height: 36px; }
+    .logo-text { font-size: 1.1rem; }
+    .btn-menu { display: block; }
+    .btn-login { padding: 8px 18px; }
+    .navbar nav {
+        display: none; position: absolute; top: 70px; left: 0; right: 0;
+        background: rgba(8, 20, 49, .97); border-bottom: 1px solid rgba(255, 255, 255, .1);
+        padding: 8px 16px 16px;
+    }
+    .navbar.menu-aberto nav { display: block; }
+    .nav-links { flex-direction: column; align-items: stretch; gap: 0; }
+    .nav-links a { display: block; padding: 14px 4px; font-size: 1.05rem; border-bottom: 1px solid rgba(255, 255, 255, .06); }
+    .nav-links a::after { display: none; }
+}
+@media (max-width: 600px) {
+    .hero-content h1 { font-size: 2.4rem; }
+    .philosophy-text { font-size: 1.2rem; }
+    .philosophy-tag, .philosophy-list li { font-size: 1rem; }
+    .hero-section { padding: 40px 18px; gap: 32px; }
+    body { background-attachment: scroll; }
+}
+
+/* Menu com 6 itens (inclui "Usuário interno"): espaço que cabe em qualquer tela,
+   sem quebrar o texto nem esconder o botão Entrar. Vale para todas as páginas públicas. */
+.navbar .nav-links { gap: clamp(16px, 2.6vw, 56px); }
+.navbar .nav-links a, .navbar .logo-text { white-space: nowrap; }
+.navbar .nav-links a { font-size: clamp(15px, 1.4vw, 18px); margin: 0; }
+.navbar .btn-login { flex-shrink: 0; }
+@media (max-width: 900px) {
+    .navbar .nav-links { gap: 0; }
+    .navbar .nav-links a { font-size: 1.05rem; }
+}

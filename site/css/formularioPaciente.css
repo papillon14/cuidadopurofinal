@@ -1,0 +1,404 @@
+/* ✅ SEUS ESTILOS E VARIÁVEIS BASE */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #305eb1 0%, #162d61 100%);
+            --card-gradient: linear-gradient(180deg, #3a2fa8 0%, #2196f3 100%);
+            --primary-color: #67c2b8;
+            --hover-color: #55a89f;
+            --text-white: #ffffff;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-gradient);
+            color: var(--text-white);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-top: 120px; /* Compensação para a Navbar Fixed */
+            padding-bottom: 60px;
+        }
+
+        /* ✅ SUA NAVBAR ORIGINAL INTEGRADA */
+        .navbar {
+            width: 100%;
+            height: 90px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: -38px;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            max-width: 45px;
+            max-height: 45px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 120px;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            font-weight: 400;
+            transition: 0.3s;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0%;
+            height: 2px;
+            background: #67c2b8;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #67c2b8;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-login {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 30px;
+            background: #67c2b8;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-login:hover {
+            background: #429e93;
+            transform: translateY(-2px);
+        }
+
+        .btn-cadastrar {
+            background: transparent;
+            color: var(--text-white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .btn-cadastrar:hover {
+                background: #429e93;
+                transform: scale(1.05);
+                }
+        /* ========================================================
+           ✨ SEÇÃO DO QUESTIONÁRIO DE SAÚDE (ESTILOS CRIATIVOS)
+           ======================================================== */
+
+        .form-container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Cabeçalho do Formulário */
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            font-weight: 300;
+        }
+
+        /* Barra de Progresso Visual (Estilo App de Saúde Moderno) */
+        .progress-wrapper {
+            margin-bottom: 35px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            width: 65%; /* Simulação de preenchimento interativo */
+            height: 100%;
+            background-color: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* Card Principal do Questionário */
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(30px);
+        }
+
+        /* Seções internas do Formulário */
+        .form-section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            color: var(--text-white);
+        }
+
+        /* Grupos de Inputs e Campos de Texto */
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .input-grid { grid-template-columns: 1fr; }
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field-group label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* Estilização Profissional de Inputs, Selects e Textareas */
+        .field-group input, 
+        .field-group select, 
+        .field-group textarea {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: var(--text-white);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .field-group input:focus, 
+        .field-group select:focus, 
+        .field-group textarea:focus {
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 12px rgba(103, 194, 184, 0.3);
+        }
+
+        /* Mudança de cor dos placeholders e options no dark mode simulado */
+        .field-group select option {
+            background-color: #1c366f;
+            color: var(--text-white);
+        }
+
+        /* Opções em formato de Botões de Seleção (Cards de Escolha) */
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .selection-option {
+            position: relative;
+        }
+
+        .selection-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* Caixa clicável simulando o design da imagem 3 */
+        .selection-box {
+            background: var(--card-gradient);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .selection-option input[type="radio"]:checked + .selection-box {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(103, 194, 184, 0.6);
+            transform: scale(1.02);
+        }
+
+        .selection-box span {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        /* Botões de Ação Inferiores */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .btn-back {
+            background: transparent;
+            color: var(--text-white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-white);
+        }
+
+        .btn-submit-form {
+            background-color: var(--primary-color);
+            color: var(--text-white);
+            border: none;
+            padding: 14px 45px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit-form:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(103, 194, 184, 0.4);
+        }
+
+        /* ✅ RESPONSIVIDADE NAVBAR */
+        @media (max-width: 1024px) {
+            .nav-links { gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .logo { margin-left: 0; }
+            .quiz-card { padding: 25px; }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        
+            .logo {
+                margin-left: 0;
+            }
+        
+            .quiz-card {
+                padding: 25px;
+            }
+        
+            .selection-grid {
+                grid-template-columns: 1fr;
+            }
+        
+            /* Responsividade mobile */
+        }

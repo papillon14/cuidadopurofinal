@@ -1,0 +1,17 @@
+{
+    "name": "Cuidado Puro Home Health",
+    "short_name": "Cuidado Puro",
+    "description": "Plataforma de cuidado domiciliar: paciente, cuidador e família conectados.",
+    "lang": "pt-BR",
+    "start_url": "./telas/telaLogin.html",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#081431",
+    "theme_color": "#0a2040",
+    "icons": [
+        { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+        { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+        { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    ]
+}
