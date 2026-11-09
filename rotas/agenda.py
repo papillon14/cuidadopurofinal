@@ -10,8 +10,7 @@ import models
 import schemas
 from database import get_db
 from seguranca import Usuario, exige
-from rotas.comum import (conversa_do_usuario, exigir_em_dia, ids_pacientes_do_familiar, mensagem_sistema,
-                         pegar)
+from rotas.comum import (conversa_do_usuario, ids_pacientes_do_familiar, mensagem_sistema, pegar)
 
 router = APIRouter(prefix="/api", tags=["4. Agenda e avaliação"])
 
@@ -96,7 +95,6 @@ def propor_agendamento(id_conversa: int, dados: schemas.AgendamentoCreate,
     conversa = conversa_do_usuario(db, usuario, id_conversa)
     if conversa.status != "aceita":
         raise HTTPException(status_code=403, detail="Primeiro o pedido de conversa precisa ser aceito.")
-    exigir_em_dia(db, usuario)
     if dados.data < date.today():
         raise HTTPException(status_code=422, detail="A data não pode ser no passado.")
     datas = _datas(dados)
@@ -137,8 +135,6 @@ def responder_proposta(id_cuidado: int, dados: schemas.Resposta,
         raise HTTPException(status_code=409, detail=f"Este agendamento já está '{c.status}'.")
     if c.proposto_por == usuario.tipo:
         raise HTTPException(status_code=409, detail="Quem confirma é a outra pessoa.")
-    if dados.aceitar:                 # recusar pode sempre; confirmar só com a mensalidade em dia
-        exigir_em_dia(db, usuario)
     itens = _grupo(db, c)
     for item in itens:
         item.status = "agendado" if dados.aceitar else "recusado"
@@ -154,7 +150,6 @@ def iniciar(id_cuidado: int, usuario: Usuario = Depends(exige("cuidador")), db: 
     c = cuidado_do_usuario(db, usuario, id_cuidado)
     if c.status != "agendado":
         raise HTTPException(status_code=409, detail="Só dá para iniciar um atendimento confirmado (agendado).")
-    exigir_em_dia(db, usuario)
     c.status = "em andamento"
     mensagem_sistema(db, c.id_conversa, f"▶️ {usuario.nome} iniciou o atendimento de {c.data.strftime('%d/%m')}.")
     db.commit()

@@ -10,8 +10,7 @@ import schemas
 from database import get_db
 from seguranca import Usuario, exige, gerar_hash, usuario_opcional
 from rotas.comum import (GRAU, conversas_abertas, criar_mensalidade, dados_cuidador, dados_paciente,
-                         email_em_uso, ids_pacientes_do_familiar, mensalidade_atual, pegar, referencia,
-                         resumo_bem_estar)
+                         email_em_uso, ids_pacientes_do_familiar, pegar, referencia, resumo_bem_estar)
 
 router = APIRouter(prefix="/api", tags=["2. Pacientes, cuidadores e família"])
 
@@ -80,7 +79,8 @@ def painel_paciente(usuario: Usuario = Depends(exige("paciente")), db: Session =
     pendentes_avaliar = db.query(models.Cuidado).filter(
         models.Cuidado.id_paciente == p.id_paciente, models.Cuidado.status == "concluído",
         ~models.Cuidado.avaliacao.has()).count()
-    mensalidade = mensalidade_atual(db, "paciente", p.id_paciente)
+    mensalidade = db.query(models.Assinatura).filter_by(
+        tipo_usuario="paciente", id_usuario=p.id_paciente, referencia=referencia()).first()
     return {
         "perfil": {**dados_paciente(p, completo=True), "email": p.email,
                    "id_necessidades": [n.id_necessidade for n in p.necessidades]},
@@ -91,7 +91,6 @@ def painel_paciente(usuario: Usuario = Depends(exige("paciente")), db: Session =
         "bem_estar": resumo_bem_estar(db, p.id_paciente),
         "mensalidade": {"status": mensalidade.status_pagamento, "valor": mensalidade.valor,
                         "id_assinatura": mensalidade.id_assinatura} if mensalidade else None,
-        "em_dia": bool(mensalidade and mensalidade.status_pagamento == "pago"),
     }
 
 
@@ -179,7 +178,8 @@ def painel_cuidador(usuario: Usuario = Depends(exige("cuidador")), db: Session =
         .order_by(models.Cuidado.data, models.Cuidado.hora_inicio).limit(5).all()
     pedidos = db.query(models.Conversa).filter_by(id_cuidador=c.id_cuidador, status="pendente",
                                                   iniciada_por="paciente").count()
-    mensalidade = mensalidade_atual(db, "cuidador", c.id_cuidador)
+    mensalidade = db.query(models.Assinatura).filter_by(
+        tipo_usuario="cuidador", id_usuario=c.id_cuidador, referencia=referencia()).first()
     dados = dados_cuidador(db, c)
     dados.update({"telefone": c.telefone, "email": c.email, "cep": c.cep,
                   "id_habilidades": [h.id_habilidade for h in c.habilidades]})
@@ -199,7 +199,6 @@ def painel_cuidador(usuario: Usuario = Depends(exige("cuidador")), db: Session =
             models.Cuidado.data >= hoje.replace(day=1)).count(),
         "mensalidade": {"status": mensalidade.status_pagamento, "valor": mensalidade.valor,
                         "id_assinatura": mensalidade.id_assinatura} if mensalidade else None,
-        "em_dia": bool(mensalidade and mensalidade.status_pagamento == "pago"),
     }
 
 
@@ -233,7 +232,8 @@ def trocar_plano(dados: schemas.TrocarPlano, usuario: Usuario = Depends(exige("c
                             detail=f"Você tem mais de {plano.limite_conversas} conversas abertas. "
                                    "Encerre algumas antes de mudar para esse plano.")
     c.id_plano = plano.id_plano
-    mensalidade = mensalidade_atual(db, "cuidador", c.id_cuidador)
+    mensalidade = db.query(models.Assinatura).filter_by(
+        tipo_usuario="cuidador", id_usuario=c.id_cuidador, referencia=referencia()).first()
     if mensalidade and mensalidade.status_pagamento != "pago":
         mensalidade.id_plano, mensalidade.valor, mensalidade.codigo_cupom = plano.id_plano, plano.valor, None
         mensalidade.codigo_pix = None

@@ -9,8 +9,7 @@ import models
 import schemas
 from database import get_db
 from seguranca import Usuario, exige
-from rotas.comum import (checar_limite_plano, conversa_do_usuario, exigir_em_dia, iniciais,
-                         mensagem_sistema, pegar)
+from rotas.comum import (checar_limite_plano, conversa_do_usuario, iniciais, mensagem_sistema, pegar)
 
 router = APIRouter(prefix="/api", tags=["3. Conversas e chat"])
 
@@ -62,7 +61,6 @@ def pedir_conversa(dados: schemas.PedidoConversa, usuario: Usuario = Depends(so_
     eu = usuario.registro
     if eu.status_cadastro != "aprovado":
         raise HTTPException(status_code=403, detail="Seu cadastro ainda não foi aprovado pela equipe.")
-    exigir_em_dia(db, usuario)
 
     if usuario.tipo == "paciente":
         cuidador = pegar(db, models.Cuidador, dados.id_outro, "Cuidador")
@@ -107,8 +105,6 @@ def responder_pedido(id_conversa: int, dados: schemas.Resposta,
         raise HTTPException(status_code=409, detail=f"Este pedido já está '{conversa.status}'.")
     if conversa.iniciada_por == usuario.tipo:
         raise HTTPException(status_code=409, detail="Quem responde o pedido é a outra pessoa.")
-    if dados.aceitar:                 # recusar pode sempre; aceitar só com a mensalidade em dia
-        exigir_em_dia(db, usuario)
     conversa.status = "aceita" if dados.aceitar else "recusada"
     conversa.respondido_em = datetime.now()
     mensagem_sistema(db, id_conversa, f"{usuario.nome} {'aceitou' if dados.aceitar else 'recusou'} o pedido."
@@ -163,7 +159,6 @@ def enviar_mensagem(id_conversa: int, dados: schemas.MensagemCreate,
     conversa = conversa_do_usuario(db, usuario, id_conversa)
     if conversa.status != "aceita":
         raise HTTPException(status_code=403, detail="O chat só libera depois que o pedido for aceito.")
-    exigir_em_dia(db, usuario)
     texto = dados.texto.strip()
     if not texto:
         raise HTTPException(status_code=422, detail="A mensagem está vazia.")

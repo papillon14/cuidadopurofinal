@@ -48,7 +48,6 @@ async function inicioPaciente(caixa) {
   const m = painel.mensalidade;
   caixa.innerHTML = topo(`Olá, ${esc(p.nome.split(" ")[0])}! 👋`, "Aqui está o resumo do seu cuidado.") +
     (pendente ? `<div class="faixa">⏳ Seu cadastro está <b>em análise</b> pela equipe. Você já pode ver o sistema, mas só pode chamar cuidadores depois de aprovado.</div>` : "") +
-    (painel.em_dia === false ? `<div class="faixa">💳 Sua mensalidade está <b>pendente</b>. Conversas e agendamentos ficam travados até o pagamento. <a href="#mensalidade" data-ir="mensalidade">Pagar com Pix</a></div>` : "") +
     (painel.pendentes_avaliar ? `<div class="faixa faixa-info">⭐ Você tem ${painel.pendentes_avaliar} atendimento(s) para avaliar. <a href="#agenda" data-ir="agenda">Avaliar agora</a></div>` : "") +
     `<div class="grade grade-4">
       <div class="cartao numero"><div class="rotulo">Próximo atendimento</div><div class="valor" style="font-size:1.2rem">${painel.proximos[0] ? `${dataBR(painel.proximos[0].data)}<br>${painel.proximos[0].hora_inicio}` : "—"}</div><div class="suave pequeno">${painel.proximos[0] ? esc(painel.proximos[0].com) : "nenhum marcado"}</div></div>

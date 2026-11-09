@@ -131,7 +131,7 @@ WHERE a.referencia = strftime('%Y-%m','now','localtime')
 ORDER BY a.status_pagamento;
 
 -- 15) Receita do mês atual: quanto já entrou e quanto falta
---     -> recebido 219.60 | a receber 89.70
+--     -> recebido 129.80 | a receber 179.50
 SELECT ROUND(SUM(CASE WHEN status_pagamento = 'pago' THEN valor ELSE 0 END), 2) AS recebido,
        ROUND(SUM(CASE WHEN status_pagamento <> 'pago' THEN valor ELSE 0 END), 2) AS a_receber
 FROM assinatura

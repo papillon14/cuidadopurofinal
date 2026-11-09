@@ -163,15 +163,13 @@ INSERT INTO assinatura (tipo_usuario, id_usuario, id_plano, referencia, valor, s
  date('now','localtime','start of month','-1 month','+9 days'), datetime('now','localtime','start of month','-1 month','+9 days')),
 ('paciente', 2, 4, strftime('%Y-%m','now','localtime','start of month','-1 month'), 29.90, 'pago',
  date('now','localtime','start of month','-1 month','+9 days'), datetime('now','localtime','start of month','-1 month','+2 days')),
--- mês atual (Ana, Beatriz e Roberto pendentes: Ana é o exemplo de quem fica bloqueada sem pagar)
+-- mês atual
 ('cuidador', 1, 3, strftime('%Y-%m','now','localtime'), 99.90, 'pago',
  date('now','localtime','start of month','+9 days'), datetime('now','localtime','start of month','+1 days')),
 ('cuidador', 2, 1, strftime('%Y-%m','now','localtime'), 29.90, 'pendente', date('now','localtime','start of month','+9 days'), NULL),
-('cuidador', 3, 2, strftime('%Y-%m','now','localtime'), 59.90, 'pago',
- date('now','localtime','start of month','+9 days'), datetime('now','localtime','start of month','+2 days')),
+('cuidador', 3, 2, strftime('%Y-%m','now','localtime'), 59.90, 'pendente', date('now','localtime','start of month','+9 days'), NULL),
 ('cuidador', 4, 1, strftime('%Y-%m','now','localtime'), 29.90, 'pendente', date('now','localtime','start of month','+9 days'), NULL),
-('paciente', 1, 4, strftime('%Y-%m','now','localtime'), 29.90, 'pago',
- date('now','localtime','start of month','+9 days'), datetime('now','localtime','start of month','+3 days')),
+('paciente', 1, 4, strftime('%Y-%m','now','localtime'), 29.90, 'pendente', date('now','localtime','start of month','+9 days'), NULL),
 ('paciente', 2, 4, strftime('%Y-%m','now','localtime'), 29.90, 'pago',
  date('now','localtime','start of month','+9 days'), datetime('now','localtime','start of month')),
 ('paciente', 3, 4, strftime('%Y-%m','now','localtime'), 29.90, 'pendente', date('now','localtime','start of month','+9 days'), NULL);

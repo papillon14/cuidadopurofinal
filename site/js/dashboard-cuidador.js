@@ -42,7 +42,6 @@ async function renderInicio(caixa) {
   const limite = pl.limite_conversas ? `${pl.conversas_abertas} de ${pl.limite_conversas}` : `${pl.conversas_abertas}`;
   caixa.innerHTML = topo(`Olá, ${esc(p.nome.split(" ")[0])}! 👋`, `Plano <b>${esc(pl.nome)}</b> ${pl.destaque ? '<span class="selo selo-destaque">★ Destaque</span>' : ""}`) +
     (p.status_cadastro !== "aprovado" ? `<div class="faixa">⏳ Seu cadastro está <b>em análise</b>. Assim que a equipe aprovar, você aparece na busca dos pacientes.</div>` : "") +
-    (painel.em_dia === false ? `<div class="faixa">💳 Sua mensalidade está <b>pendente</b>. Conversas e agendamentos ficam travados até o pagamento. <a href="#mensalidade" data-ir="mensalidade">Pagar com Pix</a></div>` : "") +
     (painel.pedidos_pendentes ? `<div class="faixa faixa-info">📨 Você tem ${painel.pedidos_pendentes} pedido(s) de conversa esperando resposta. <a href="#pedidos" data-ir="pedidos">Responder</a></div>` : "") +
     `<div class="grade grade-4">
       <div class="cartao numero"><div class="rotulo">Pedidos novos</div><div class="valor ${painel.pedidos_pendentes ? "aviso" : ""}">${painel.pedidos_pendentes}</div><div class="suave pequeno">de pacientes</div></div>
