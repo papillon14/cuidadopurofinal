@@ -42,6 +42,7 @@ async function renderInicio(caixa) {
   const limite = pl.limite_conversas ? `${pl.conversas_abertas} de ${pl.limite_conversas}` : `${pl.conversas_abertas}`;
   caixa.innerHTML = topo(`Olá, ${esc(p.nome.split(" ")[0])}! 👋`, `Plano <b>${esc(pl.nome)}</b> ${pl.destaque ? '<span class="selo selo-destaque">★ Destaque</span>' : ""}`) +
     (p.status_cadastro !== "aprovado" ? `<div class="faixa">⏳ Seu cadastro está <b>em análise</b>. Assim que a equipe aprovar, você aparece na busca dos pacientes.</div>` : "") +
+    (painel.em_dia === false ? `<div class="faixa">💳 Sua mensalidade está <b>pendente</b>. Conversas e agendamentos ficam travados até o pagamento. <a href="#mensalidade" data-ir="mensalidade">Pagar com Pix</a></div>` : "") +
     (painel.pedidos_pendentes ? `<div class="faixa faixa-info">📨 Você tem ${painel.pedidos_pendentes} pedido(s) de conversa esperando resposta. <a href="#pedidos" data-ir="pedidos">Responder</a></div>` : "") +
     `<div class="grade grade-4">
       <div class="cartao numero"><div class="rotulo">Pedidos novos</div><div class="valor ${painel.pedidos_pendentes ? "aviso" : ""}">${painel.pedidos_pendentes}</div><div class="suave pequeno">de pacientes</div></div>
@@ -52,7 +53,7 @@ async function renderInicio(caixa) {
     <div class="grade grade-2" style="margin-top:16px">
       <div class="cartao"><div class="cartao-topo"><h3>Próximos atendimentos</h3><a href="#agenda" data-ir="agenda" class="pequeno">ver agenda</a></div>
         ${painel.proximos.length ? `<div class="lista">${painel.proximos.map((a) => `<div class="item"><div class="item-data"><b>${new Date(a.data + "T12:00").getDate()}</b><span>${diaSemana(a.data)}</span></div>
-          <div class="item-corpo"><strong>${esc(a.tipo)} · ${a.hora_inicio}–${a.hora_fim}</strong><span class="suave pequeno">${esc(a.com)} · ${esc(a.endereco)}</span></div>${selo(a.status)}</div>`).join("")}</div>`
+          <div class="item-corpo"><strong>${esc(a.tipo)} · ${horario(a)}</strong><span class="suave pequeno">${esc(a.com)} · ${esc(a.endereco)}</span></div>${selo(a.status)}</div>`).join("")}</div>`
         : vazio("Nenhum atendimento marcado.")}</div>
       <div class="cartao"><h3>Mensalidade</h3>${m ? `<p>${reais(m.valor)} · ${selo(m.status)}</p>` : vazio("Sem mensalidade neste mês.")}
         ${m && m.status !== "pago" ? `<a class="btn btn-pequeno" href="#mensalidade" data-ir="mensalidade">Pagar com Pix</a>` : ""}

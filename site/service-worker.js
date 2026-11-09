@@ -5,7 +5,7 @@
 //    se estiver sem internet, usa a cópia guardada.
 //  * Imagens e ícones: usa a cópia guardada (mais rápido).
 //  * API (/api/...): NUNCA guarda. Dados de saúde e chat sempre vêm do servidor.
-const VERSAO = "cuidado-puro-v6";
+const VERSAO = "cuidado-puro-v8";
 const ESSENCIAIS = [
   "./", "./index.html", "./manifest.json",
   "./css/style.css", "./css/app.css",

@@ -166,7 +166,8 @@ def linha_do_tempo(id_paciente: int, usuario: Usuario = Depends(quem_acompanha),
                                              models.Cuidado.status.in_(["agendado", "em andamento", "concluído"])):
         quando = datetime.combine(c.data, datetime.strptime(c.hora_inicio, "%H:%M").time())
         feitas = sum(t.realizado for t in c.tarefas)
-        texto = f"{c.tipo.capitalize()} com {c.cuidador.nome}, {c.hora_inicio}–{c.hora_fim}"
+        texto = (f"{c.tipo.capitalize()} com {c.cuidador.nome}, {c.hora_inicio}–{c.hora_fim}"
+                 f"{' (dia seguinte)' if c.hora_fim < c.hora_inicio else ''}")
         if c.tarefas:
             texto += f" · tarefas {feitas}/{len(c.tarefas)}"
         eventos.append({"quando": quando, "tipo": "atendimento", "titulo": f"Atendimento {c.status}",

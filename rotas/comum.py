@@ -279,3 +279,29 @@ def dados_mensalidade(a: models.Assinatura) -> dict:
             "valor": a.valor, "valor_cheio": a.plano.valor, "codigo_cupom": a.codigo_cupom,
             "status_pagamento": a.status_pagamento, "data_vencimento": a.data_vencimento,
             "data_pagamento": a.data_pagamento}
+
+
+# ---------------- MENSALIDADE EM DIA (libera o serviço) ----------------
+# Regra: paciente e cuidador só usam o serviço (pedir/aceitar conversa, mandar mensagem,
+# propor/confirmar/iniciar atendimento) se a mensalidade DO MÊS estiver PAGA.
+# O que NÃO trava: ver o painel, pagar, perfil, SAC, saúde (remédios, consultas, registros),
+# concluir um atendimento que já começou e avaliar. Dado de saúde nunca fica preso por dinheiro.
+AVISO_PAGAMENTO = ("Mensalidade pendente: pague a mensalidade (menu Mensalidade › Pagar com Pix) "
+                   "para liberar conversas e agendamentos.")
+
+
+def mensalidade_atual(db: Session, tipo: str, id_usuario: int):
+    """A do mês atual; se ainda não existir, a mais recente."""
+    q = db.query(models.Assinatura).filter_by(tipo_usuario=tipo, id_usuario=id_usuario)
+    return q.filter_by(referencia=referencia()).first() or q.order_by(models.Assinatura.referencia.desc()).first()
+
+
+def esta_em_dia(db: Session, tipo: str, id_usuario: int) -> bool:
+    atual = mensalidade_atual(db, tipo, id_usuario)
+    return bool(atual and atual.status_pagamento == "pago")
+
+
+def exigir_em_dia(db: Session, usuario: Usuario):
+    """Chame nas rotas que usam o serviço. Erro 402 = 'Payment Required' (pagamento necessário)."""
+    if usuario.tipo in ("paciente", "cuidador") and not esta_em_dia(db, usuario.tipo, usuario.id):
+        raise HTTPException(status_code=402, detail=AVISO_PAGAMENTO)

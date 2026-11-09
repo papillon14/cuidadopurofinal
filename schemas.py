@@ -155,10 +155,12 @@ class AgendamentoCreate(BaseModel):
 
     @field_validator("hora_fim")
     @classmethod
-    def _fim_depois(cls, v, info):
+    def _fim_diferente(cls, v, info):
+        """Fim depois do início = mesmo dia. Fim ANTES do início = termina no dia seguinte
+        (plantão noturno, ex.: 19:00 às 07:00). Só não pode ser igual."""
         inicio = info.data.get("hora_inicio")
-        if inicio and v <= inicio:
-            raise ValueError("a hora de fim precisa ser depois da hora de início")
+        if inicio and v == inicio:
+            raise ValueError("a hora de fim não pode ser igual à hora de início")
         return v
 
 

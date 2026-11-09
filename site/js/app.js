@@ -225,6 +225,11 @@ function vazio(texto) { return `<div class="vazio">${esc(texto)}</div>`; }
 // ------------------------------------------------------------------
 // LAYOUT DOS DASHBOARDS: menu lateral que vira gaveta no celular
 // ------------------------------------------------------------------
+// Horário do atendimento. Fim menor que o início = termina no dia seguinte (plantão noturno).
+function horario(a) {
+  return `${a.hora_inicio}–${a.hora_fim}${a.hora_fim < a.hora_inicio ? " (+1 dia)" : ""}`;
+}
+
 function montarMenu(secoes, aoTrocar) {
   const lateral = el(".lateral");
   const botao = el(".btn-gaveta");

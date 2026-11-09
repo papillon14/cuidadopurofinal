@@ -19,15 +19,16 @@ from sqlalchemy.exc import IntegrityError
 
 import models
 import monitor
-from database import Base, SessionLocal, engine
+from database import Base, SessionLocal, atualizar_banco_existente, engine
 from seguranca import gerar_hash
 from rotas import acesso, agenda, conversas, mensalidades, painel, pessoas, sac, saude
 
+atualizar_banco_existente()          # ajusta bancos antigos (ex.: o da nuvem) sem perder dados
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Cuidado Puro — API",
-    version="3.0",
+    version="3.1",
     description="Plataforma de home care: paciente, cuidador, família e equipe interna. "
                 "Para testar rotas com login: faça POST /api/login (ou /api/equipe/login), copie o "
                 "token e clique no cadeado **Authorize**.",

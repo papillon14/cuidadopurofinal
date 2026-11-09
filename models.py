@@ -231,7 +231,7 @@ class Cuidado(Base):
         CheckConstraint("status IN ('proposto','agendado','em andamento','concluído','cancelado','recusado')",
                         name="ck_cuidado_status"),
         CheckConstraint("proposto_por IN ('paciente','cuidador')", name="ck_cuidado_quem"),
-        CheckConstraint("hora_fim > hora_inicio", name="ck_cuidado_horario"),
+        CheckConstraint("hora_fim <> hora_inicio", name="ck_cuidado_horario")  # fim < início = dia seguinte,
     )
     id_cuidado = Column(Integer, primary_key=True)
     id_conversa = Column(Integer, ForeignKey("conversa.id_conversa"), nullable=False)

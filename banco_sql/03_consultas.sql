@@ -131,7 +131,7 @@ WHERE a.referencia = strftime('%Y-%m','now','localtime')
 ORDER BY a.status_pagamento;
 
 -- 15) Receita do mês atual: quanto já entrou e quanto falta
---     -> recebido 129.80 | a receber 179.50
+--     -> recebido 219.60 | a receber 89.70
 SELECT ROUND(SUM(CASE WHEN status_pagamento = 'pago' THEN valor ELSE 0 END), 2) AS recebido,
        ROUND(SUM(CASE WHEN status_pagamento <> 'pago' THEN valor ELSE 0 END), 2) AS a_receber
 FROM assinatura
@@ -165,7 +165,8 @@ JOIN paciente pa          ON pa.id_paciente = pf.id_paciente;
 -- INSERT INTO avaliacao (id_cuidado, id_paciente, id_cuidador, nota) VALUES (2, 1, 1, 6);       -- CHECK: nota só de 1 a 5
 -- INSERT INTO conversa (id_paciente, id_cuidador, iniciada_por) VALUES (1, 1, 'paciente');      -- UNIQUE: essa conversa já existe
 -- INSERT INTO cuidado (id_conversa, id_cuidador, id_paciente, proposto_por, tipo, data, hora_inicio, hora_fim)
---        VALUES (1, 1, 1, 'paciente', 'visita', '2026-12-01', '10:00', '09:00');                -- CHECK: fim antes do início
+--        VALUES (1, 1, 1, 'paciente', 'visita', '2026-12-01', '10:00', '10:00');                -- CHECK: fim igual ao início
+--   (fim ANTES do início é permitido: plantão que termina no dia seguinte, ex.: 19:00 às 07:00)
 -- INSERT INTO cuidador (nome, rg, cpf, idade, telefone, cidade, cep, categoria_profissional, numero_registro_coren, id_plano, email, senha_hash)
 --        VALUES ('X', '1', '000', 30, '1', 'M', '1', 'sem registro', 'COREN 1', 1, 'x@x.com', 'h'); -- CHECK: sem registro não tem COREN
 -- INSERT INTO equipe_interna (nome, cpf, telefone, cidade, email, senha_hash, papel)

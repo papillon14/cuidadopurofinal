@@ -48,6 +48,7 @@ async function inicioPaciente(caixa) {
   const m = painel.mensalidade;
   caixa.innerHTML = topo(`Olá, ${esc(p.nome.split(" ")[0])}! 👋`, "Aqui está o resumo do seu cuidado.") +
     (pendente ? `<div class="faixa">⏳ Seu cadastro está <b>em análise</b> pela equipe. Você já pode ver o sistema, mas só pode chamar cuidadores depois de aprovado.</div>` : "") +
+    (painel.em_dia === false ? `<div class="faixa">💳 Sua mensalidade está <b>pendente</b>. Conversas e agendamentos ficam travados até o pagamento. <a href="#mensalidade" data-ir="mensalidade">Pagar com Pix</a></div>` : "") +
     (painel.pendentes_avaliar ? `<div class="faixa faixa-info">⭐ Você tem ${painel.pendentes_avaliar} atendimento(s) para avaliar. <a href="#agenda" data-ir="agenda">Avaliar agora</a></div>` : "") +
     `<div class="grade grade-4">
       <div class="cartao numero"><div class="rotulo">Próximo atendimento</div><div class="valor" style="font-size:1.2rem">${painel.proximos[0] ? `${dataBR(painel.proximos[0].data)}<br>${painel.proximos[0].hora_inicio}` : "—"}</div><div class="suave pequeno">${painel.proximos[0] ? esc(painel.proximos[0].com) : "nenhum marcado"}</div></div>
@@ -58,7 +59,7 @@ async function inicioPaciente(caixa) {
     <div class="grade grade-2" style="margin-top:16px">
       <div class="cartao"><div class="cartao-topo"><h3>Próximos atendimentos</h3><a href="#agenda" data-ir="agenda" class="pequeno">ver agenda</a></div>
         ${painel.proximos.length ? `<div class="lista">${painel.proximos.map((a) => `<div class="item"><div class="item-data"><b>${new Date(a.data + "T12:00").getDate()}</b><span>${diaSemana(a.data)}</span></div>
-          <div class="item-corpo"><strong>${esc(a.tipo)} · ${a.hora_inicio}–${a.hora_fim}</strong><span class="suave pequeno">com ${esc(a.com)}</span></div>${selo(a.status)}</div>`).join("")}</div>`
+          <div class="item-corpo"><strong>${esc(a.tipo)} · ${horario(a)}</strong><span class="suave pequeno">com ${esc(a.com)}</span></div>${selo(a.status)}</div>`).join("")}</div>`
         : vazio("Nenhum atendimento marcado. Procure um cuidador e combine pelo chat.")}
         ${pendente ? "" : `<div class="linha-botoes"><a class="btn" href="#buscar" data-ir="buscar">🔎 Buscar cuidador</a></div>`}</div>
       <div class="cartao"><div class="cartao-topo"><h3>Saúde</h3><a href="#saude" data-ir="saude" class="pequeno">ver tudo</a></div>
@@ -206,7 +207,7 @@ async function inicioFamilia(caixa) {
       <div><h2 style="margin:0">${esc(x.perfil.nome)}</h2><span class="suave pequeno">${x.perfil.idade} anos · ${esc(x.perfil.endereco)}</span></div></div>
       <button class="btn btn-pequeno" data-ver-saude="${x.perfil.id_paciente}">Ver saúde completa</button></div>
       <div class="grade grade-2"><div>${medidorBemEstar(x.bem_estar)}<div style="margin-top:12px">${listaAlertas(x.bem_estar.alertas)}</div></div>
-      <div><h3>Próximos atendimentos</h3>${x.proximos.length ? `<div class="lista">${x.proximos.map((a) => `<div class="item"><div class="item-corpo"><strong>${dataBR(a.data)} · ${a.hora_inicio}–${a.hora_fim}</strong>
+      <div><h3>Próximos atendimentos</h3>${x.proximos.length ? `<div class="lista">${x.proximos.map((a) => `<div class="item"><div class="item-corpo"><strong>${dataBR(a.data)} · ${horario(a)}</strong>
         <span class="suave pequeno">${esc(a.tipo)} com ${esc(a.com)}</span></div>${selo(a.status)}</div>`).join("")}</div>` : vazio("Nada marcado.")}</div></div></div>`).join("");
   els("[data-ver-saude]", caixa).forEach((b) => b.addEventListener("click", () => { pacienteFamilia = Number(b.dataset.verSaude); irPara("saude"); }));
 }

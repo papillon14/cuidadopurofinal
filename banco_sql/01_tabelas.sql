@@ -274,7 +274,8 @@ CREATE TABLE cuidado (
     CONSTRAINT ck_cuidado_status  CHECK (status IN
         ('proposto','agendado','em andamento','concluído','cancelado','recusado')),
     CONSTRAINT ck_cuidado_quem    CHECK (proposto_por IN ('paciente','cuidador')),
-    CONSTRAINT ck_cuidado_horario CHECK (hora_fim > hora_inicio),
+    -- fim MENOR que o início = plantão que termina no DIA SEGUINTE (ex.: 19:00 às 07:00)
+    CONSTRAINT ck_cuidado_horario CHECK (hora_fim <> hora_inicio),
     FOREIGN KEY (id_conversa) REFERENCES conversa(id_conversa),
     FOREIGN KEY (id_cuidador) REFERENCES cuidador(id_cuidador),
     FOREIGN KEY (id_paciente) REFERENCES paciente(id_paciente)

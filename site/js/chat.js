@@ -142,7 +142,7 @@ async function mostrarPropostas() {
   Object.values(grupos).forEach((g) => {
     const a = g[0];
     caixa.insertAdjacentHTML("beforeend", `<div class="proposta"><strong>📅 Proposta de ${esc(a.tipo)}</strong>
-      <div class="pequeno">${g.length > 1 ? `${g.length} atendimentos, de ${dataBR(a.data)} a ${dataBR(g[g.length - 1].data)}` : `${dataBR(a.data)} (${diaSemana(a.data)})`}, das ${a.hora_inicio} às ${a.hora_fim}</div>
+      <div class="pequeno">${g.length > 1 ? `${g.length} atendimentos, de ${dataBR(a.data)} a ${dataBR(g[g.length - 1].data)}` : `${dataBR(a.data)} (${diaSemana(a.data)})`}, das ${a.hora_inicio} às ${a.hora_fim}${a.hora_fim < a.hora_inicio ? " do dia seguinte" : ""}</div>
       ${a.tarefas.length ? `<div class="pequeno suave">Tarefas: ${a.tarefas.map((t) => esc(t.descricao)).join(", ")}</div>` : ""}
       ${a.posso_confirmar ? `<div class="linha-botoes"><button class="btn btn-pequeno btn-ok" data-prop="${a.id_cuidado}" data-ok="1">Confirmar</button>
         <button class="btn btn-pequeno btn-claro" data-prop="${a.id_cuidado}" data-ok="0">Recusar</button></div>` : `<div class="pequeno suave">Aguardando ${esc(aberta.outro.nome)} confirmar.</div>`}</div>`);
@@ -194,7 +194,7 @@ function janelaProposta() {
       <div class="campo"><label for="hora_inicio">Início *</label><input id="hora_inicio" name="hora_inicio" type="time" required value="08:00"></div>
       <div class="campo"><label for="hora_fim">Fim *</label><input id="hora_fim" name="hora_fim" type="time" required value="12:00"></div>
     </div>
-    <p class="ajuda" style="margin-top:-8px">Para testar rápido, marque um atendimento de 10 minutos para hoje.</p>
+    <p class="ajuda" style="margin-top:-8px">Plantão noturno: se o fim for antes do início (ex.: 19:00 às 07:00), ele termina no dia seguinte. Para testar rápido, marque 10 minutos para hoje.</p>
     <div class="campo"><label for="observacoes">Observações</label><textarea id="observacoes" name="observacoes" maxlength="500" placeholder="Ex.: levar aparelho de pressão"></textarea></div>
     <div class="campo"><label for="tarefas">Tarefas do atendimento (uma por linha)</label><textarea id="tarefas" placeholder="Dar remédio às 8h&#10;Medir pressão&#10;Caminhada de 15 min"></textarea></div>
     <label class="opcao" style="margin-bottom:10px"><input type="checkbox" id="repetir"> Repetir toda semana (escala)</label>

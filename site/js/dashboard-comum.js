@@ -55,7 +55,7 @@ function itemAgenda(a, souCuidador, somenteLeitura) {
     : `<span class="etiqueta">${t.realizado ? "✅" : "⬜"} ${esc(t.descricao)}</span>`).join("")}</div>` : "";
   return `<div class="item">
     <div class="item-data"><b>${d.getDate()}</b><span>${d.toLocaleDateString("pt-BR", { month: "short" }).replace(".", "")} · ${diaSemana(a.data)}</span></div>
-    <div class="item-corpo"><strong>${esc(a.tipo[0].toUpperCase() + a.tipo.slice(1))} · ${a.hora_inicio}–${a.hora_fim} ${selo(a.status)}</strong>
+    <div class="item-corpo"><strong>${esc(a.tipo[0].toUpperCase() + a.tipo.slice(1))} · ${horario(a)} ${selo(a.status)}</strong>
       <span class="suave pequeno">com ${esc(outro)}${souCuidador ? ` · ${esc(a.paciente.endereco)}` : ""}${a.grupo_repeticao ? " · escala" : ""}</span>
       ${a.observacoes ? `<div class="pequeno">${esc(a.observacoes)}</div>` : ""}
       ${a.status === "proposto" && !a.posso_confirmar ? `<div class="pequeno suave">Aguardando a confirmação de ${esc(outro)}.</div>` : ""}
